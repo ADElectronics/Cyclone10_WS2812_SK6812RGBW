@@ -1,0 +1,5 @@
+# Build
+/.vs/*
+/packages/*
+/C10LP_App/bin/*
+/C10LP_App/obj/*

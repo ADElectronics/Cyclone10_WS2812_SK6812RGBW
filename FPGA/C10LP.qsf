@@ -1,0 +1,104 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+# Date created = 18:41:06  July 09, 2018
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		C10LP_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone 10 LP"
+set_global_assignment -name DEVICE 10CL025YU256I7G
+set_global_assignment -name TOP_LEVEL_ENTITY C10LP_TOP
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.0.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:41:06  JULY 09, 2018"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 256
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 7
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_E1 -to SYS_CLK50M
+set_location_assignment PIN_T8 -to SYS_CLK125M_ETH
+set_location_assignment PIN_M15 -to SYS_CLK50M_HBUS
+set_location_assignment PIN_E16 -to SYS_CLK_USER
+set_location_assignment PIN_L13 -to GPIO0
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_location_assignment PIN_L14 -to USER_LED[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_LED[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO0
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SYS_CLK50M
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SYS_CLK50M_HBUS
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SYS_CLK125M_ETH
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to SYS_CLK_USER
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_LED[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_LED[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_LED[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_PB[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_PB[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_PB[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to USER_PB[0]
+set_location_assignment PIN_K15 -to USER_LED[1]
+set_location_assignment PIN_J14 -to USER_LED[2]
+set_location_assignment PIN_J13 -to USER_LED[3]
+set_location_assignment PIN_E15 -to USER_PB[0]
+set_location_assignment PIN_F14 -to USER_PB[1]
+set_location_assignment PIN_C11 -to USER_PB[2]
+set_location_assignment PIN_D9 -to USER_PB[3]
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name USE_SIGNALTAP_FILE stp1.stp
+set_global_assignment -name OCP_HW_EVAL DISABLE
+set_location_assignment PIN_L2 -to ARDUINO_IO12
+set_location_assignment PIN_L1 -to ARDUINO_IO13
+set_global_assignment -name VERILOG_FILE UART_TX.v
+set_global_assignment -name VERILOG_FILE UART_RX.v
+set_global_assignment -name VERILOG_FILE UART.v
+set_global_assignment -name VERILOG_FILE SK6812RGBW.v
+set_global_assignment -name VERILOG_FILE debouncer.v
+set_global_assignment -name VERILOG_FILE C10LP_TOP.v
+set_global_assignment -name VERILOG_FILE WS2812.v
+set_global_assignment -name VERILOG_FILE RAM_2P.v
+set_location_assignment PIN_L16 -to GPIO1
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to GPIO1
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ARDUINO_IO12
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to ARDUINO_IO13
+set_global_assignment -name VERILOG_FILE RXMajority3Filter.v
+set_global_assignment -name VERILOG_FILE LedDataSelector.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
