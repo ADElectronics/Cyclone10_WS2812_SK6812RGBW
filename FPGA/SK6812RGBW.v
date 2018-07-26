@@ -1,6 +1,6 @@
 module SK6812RGBW
 #(
-	parameter LEDS_NUM = 7, // Сколько светодиодов
+	parameter LEDS_NUM = 3, // Сколько светодиодов
 	parameter PREPARE_LATCH_DELAY = 10, // сколько тактов ожидать новые данные
 	parameter CLOCK_FRQ = 50_000_000  // Частота тактового сигнала
 )
@@ -25,7 +25,7 @@ localparam STATE_PREPARE_LATCH = 3'd1;
 localparam STATE_LATCH    = 3'd2;
 localparam STATE_PREPARE_TRANSMIT = 3'd3;
 localparam STATE_TRANSMIT = 3'd4;
-localparam STATE_FINISH   = 3'd5;
+localparam STATE_SEND_RESET   = 3'd5;
 
 reg [CLK_COUNTER_WIDTH-1:0] clk_counter;
 reg [2:0] current_state = STATE_RESET;
@@ -82,16 +82,14 @@ begin
 			clk_counter <= 0;
 			current_bit <= 3'd7;
 			
-			case (current_color)
-			2'd0: // зеленый
+			if(current_color == 2'd0) // зеленый
 				led_current_color <= led_green;
-			2'd1: // красный
+			else if(current_color == 2'd1) // красный
 				led_current_color <= led_red;
-			2'd2: // синий
+			else if(current_color == 2'd2) // синий
 				led_current_color <= led_blue;
-			2'd3: // белый
+			else if(current_color == 2'd3) // белый
 				led_current_color <= led_white;
-			endcase // current_color
 			
 			current_state <= STATE_TRANSMIT;
 		end
@@ -114,7 +112,7 @@ begin
 					if(current_color == 2'd3)
 					begin
 						if(current_ledN == LEDS_NUM)
-							current_state <= STATE_FINISH;
+							current_state <= STATE_SEND_RESET;
 						else
 						begin // следующий светодиод
 							current_ledN <= current_ledN + 1'd1;
@@ -136,12 +134,15 @@ begin
 				clk_counter <= clk_counter + 1'b1;
 		end
 
-		STATE_FINISH:
+		STATE_SEND_RESET:
 		begin
-			clk_counter <= clk_counter + 1'b1;
+			
 		
 			if(clk_counter < RESET_CYCLE_COUNT)
+			begin
+				clk_counter <= clk_counter + 1'b1;
 				ws_data <= 0;
+			end
 			else
 				current_state <= STATE_RESET;
 		end
